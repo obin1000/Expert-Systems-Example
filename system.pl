@@ -103,44 +103,70 @@ parent_of(siem_dekker, ben_dekker).
 parent_of(sien_dekker, ben_dekker).
 
 
-
-
 /* Rules */
-father_of(X,Y):- male(X),
+cousin_of(X,Y):-
+    uncle_aunt_of(Z,X),
+    child_of(Z,Y).
+
+child_of(X,Y):-
+    parent_of(X, Y).
+
+male_child_of(X,Y):- male(Y),
+    parent_of(X, Y).
+
+female_child_of(X,Y):- female(Y),
+    parent_of(X, Y).
+
+grandchild_of(X,Y):-
+    parent_of(X, Z),
+    parent_of(Z, Y).
+
+male_grandchild_of(X,Y):- male(Y),
+    parent_of(X, Z),
+    parent_of(Z, Y).
+
+female_grandchild_of(X,Y):- female(Y),
+    parent_of(X, Z),
+    parent_of(Z, Y).
+
+male_parent_of(X,Y):- male(X),
     parent_of(X,Y).
 
-mother_of(X,Y):- female(X),
+female_parent_of(X,Y):- female(X),
+    parent_of(X,Y).
+
+other_parent_of(X,Y):- other(X),
     parent_of(X,Y).
 
 grandfather_of(X,Y):- male(X),
-    parent_of(X,Z),
-    parent_of(Z,Y).
+    parent_of(Z,Y),
+    parent_of(X,Z).
 
 grandmother_of(X,Y):- female(X),
     parent_of(X,Z),
     parent_of(Z,Y).
 
-sister_of(X,Y):- %(X,Y or Y,X)%
-    female(X),
-    father_of(F, Y), father_of(F,X),X \= Y.
+sibling_of(X, Y):-
+    female_parent_of(M, Y), female_parent_of(M,X),X \= Y.
 
 sister_of(X,Y):- female(X),
-    mother_of(M, Y), mother_of(M,X),X \= Y.
+    female_parent_of(M, Y), female_parent_of(M,X),X \= Y.
 
 aunt_of(X,Y):- female(X),
     parent_of(Z,Y), sister_of(Z,X),!.
 
-brother_of(X,Y):- %(X,Y or Y,X)%
-    male(X),
-    father_of(F, Y), father_of(F,X),X \= Y.
-
 brother_of(X,Y):- male(X),
-    mother_of(M, Y), mother_of(M,X),X \= Y.
+    female_parent_of(M, Y), female_parent_of(M,X),X \= Y.
 
-uncle_of(X,Y):-
+uncle_of(X, Y):-
     parent_of(Z,Y), brother_of(Z,X).
 
+uncle_aunt_of(X,Y):-
+    parent_of(Z,Y),
+    sibling_of(Z,X).
+
 ancestor_of(X,Y):- parent_of(X,Y).
+
 ancestor_of(X,Y):- parent_of(X,Z),
     ancestor_of(Z,Y).
 
