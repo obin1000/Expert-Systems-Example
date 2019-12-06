@@ -10,7 +10,6 @@ To execute more queries, please see our sourcecode.
 
 Find all cousins of Robin Vonk.\
 Returns: Nieces = [sanna_vonk, kimberly_vonk, miranda_vonk, cynthia_dekker].
-
 ```shell script
 nieces_of(robin_vonk, Nieces).
 ```
@@ -41,7 +40,6 @@ sister_of(robin_vonk, lara_vonk).
 
 Find all grandchildren of Henk Vonk. \
 Returns: Grandchildren = [robin_vonk, lara_vonk, sanna_vonk, kimberly_vonk, patrick_vonk, dennis_vonk, miranda_vonk].
-
 ```shell script
 grandchildren_of(henk_vonk, Grandchildren).
 ```

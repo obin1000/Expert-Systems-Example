@@ -15,6 +15,7 @@ male(dennis_vonk).
 female(miranda_vonk).
 
 female(kimberly_vonk).
+female(stefanie_vonk).
 male(patrick_vonk).
 
 male(jeffrey_dekker).
@@ -32,7 +33,7 @@ female(annemiek_vonk).
 male(dirk_vonk).
 female(marie_vonk).
 male(willem_vonk).
-female(kim_vonk).
+female(geerie_vonk).
 
 
 female(marjanne_dekker).
@@ -100,6 +101,13 @@ parent_of(marjanne_dekker, siem_dekker).
 parent_of(marjanne_dekker, sien_dekker).
 parent_of(ben_dekker, siem_dekker).
 parent_of(ben_dekker, sien_dekker).
+
+parent_of(willem_vonk, kimberly_vonk).
+parent_of(geerie_vonk, kimberly_vonk).
+parent_of(willem_vonk, stefanie_vonk).
+parent_of(geerie_vonk, stefanie_vonk).
+parent_of(willem_vonk, patrick_vonk).
+parent_of(geerie_vonk, patrick_vonk).
 
 /* Rules */
 
