@@ -49,59 +49,57 @@ female(sien_dekker).
 
 /* gen 3 to gen 4 */
 
-parent_of(robin_vonk, spruit_vonk).
-parent_of(maan_roos_moeskops, spruit_vonk).
-parent_of(robin_vonk, bloempje_vonk).
-parent_of(maan_roos_moeskops, bloempje_vonk).
+parent_of(spruit_vonk, robin_vonk).
+parent_of(spruit_vonk, maan_roos_moeskops).
+parent_of(bloempje_vonk, robin_vonk).
+parent_of(bloempje_vonk, maan_roos_moeskops).
 
 
 /* gen 2 to gen 3 */
-parent_of(edwin_vonk, robin_vonk).
-parent_of(simone_dekker, robin_vonk).
-parent_of(edwin_vonk, lara_vonk).
-parent_of(simone_dekker, lara_vonk).
+parent_of(robin_vonk, edwin_vonk).
+parent_of(robin_vonk, simone_dekker).
+parent_of(lara_vonk, edwin_vonk).
+parent_of(lara_vonk, simone_dekker).
 
-parent_of(alfred_vonk, sanna_vonk).
-parent_of(annemiek_vonk, sanna_vonk).
+parent_of(sanna_vonk, alfred_vonk).
+parent_of(sanna_vonk, annemiek_vonk).
 
-parent_of(dirk_vonk, dennis_vonk).
-parent_of(marie_vonk, dennis_vonk).
-parent_of(dirk_vonk, miranda_vonk).
-parent_of(marie_vonk, miranda_vonk).
+parent_of(dennis_vonk, dirk_vonk).
+parent_of(dennis_vonk, marie_vonk).
+parent_of(miranda_vonk, dirk_vonk).
+parent_of(miranda_vonk, marie_vonk).
 
-parent_of(willem_vonk, kimberly_vonk).
-parent_of(kim_vonk, kimberly_vonk).
-parent_of(willem_vonk, patrick_vonk).
-parent_of(kim_vonk, patrick_vonk).
+parent_of(kimberly_vonk, willem_vonk).
+parent_of(kimberly_vonk, kim_vonk).
+parent_of(patrick_vonk, willem_vonk).
+parent_of(patrick_vonk, kim_vonk).
 
-parent_of(marjanne_dekker, cynthia_dekker).
-parent_of(gerard_dekker, cynthia_dekker).
-parent_of(marjanne_dekker, jeffrey_dekker).
-parent_of(gerard_dekker, jeffrey_dekker).
+parent_of(cynthia_dekker, marjanne_dekker).
+parent_of(cynthia_dekker, gerard_dekker).
+parent_of(jeffrey_dekker, marjanne_dekker).
+parent_of(jeffrey_dekker, gerard_dekker).
 
-parent_of(ben_dekker, gijs_dekker).
-parent_of(jolanda_dekker, gijs_dekker).
-parent_of(ben_dekker, melle_dekker).
-parent_of(jolanda_dekker, melle_dekker).
-
+parent_of(gijs_dekker, ben_dekker).
+parent_of(gijs_dekker, jolanda_dekker).
+parent_of(melle_dekker, ben_dekker).
+parent_of(melle_dekker, jolanda_dekker).
 
 /* gen 1 to gen 2 */
-parent_of(henk_vonk, edwin_vonk).
-parent_of(greet_vonk, edwin_vonk).
-parent_of(henk_vonk, alfred_vonk).
-parent_of(greet_vonk, alfred_vonk).
-parent_of(henk_vonk, willem_vonk).
-parent_of(greet_vonk, willem_vonk).
-parent_of(henk_vonk, dirk_vonk).
-parent_of(greet_vonk, dirk_vonk).
+parent_of(edwin_vonk, henk_vonk).
+parent_of(edwin_vonk, greet_vonk).
+parent_of(alfred_vonk, henk_vonk).
+parent_of(alfred_vonk, greet_vonk).
+parent_of(willem_vonk, henk_vonk).
+parent_of(willem_vonk, greet_vonk).
+parent_of(dirk_vonk, henk_vonk).
+parent_of(dirk_vonk, greet_vonk).
 
-parent_of(siem_dekker, simone_dekker).
-parent_of(sien_dekker, simone_dekker).
-parent_of(siem_dekker, marjanne_dekker).
-parent_of(sien_dekker, marjanne_dekker).
-parent_of(siem_dekker, ben_dekker).
-parent_of(sien_dekker, ben_dekker).
-
+parent_of(simone_dekker, siem_dekker).
+parent_of(simone_dekker, sien_dekker).
+parent_of(marjanne_dekker, siem_dekker).
+parent_of(marjanne_dekker, sien_dekker).
+parent_of(ben_dekker, siem_dekker).
+parent_of(ben_dekker, sien_dekker).
 
 /* Rules */
 cousin_of(X,Y):-
@@ -111,26 +109,31 @@ cousin_of(X,Y):-
 child_of(X,Y):-
     parent_of(X, Y).
 
-male_child_of(X,Y):- male(Y),
-    parent_of(X, Y).
+male_child_of(X,Y):-
+    parent_of(X, Y),
+    male(Y).
 
-female_child_of(X,Y):- female(Y),
-    parent_of(X, Y).
+female_child_of(X,Y):-
+    parent_of(X, Y),
+    female(Y).
 
 grandchild_of(X,Y):-
     parent_of(X, Z),
     parent_of(Z, Y).
 
-male_grandchild_of(X,Y):- male(Y),
+male_grandchild_of(X,Y):-
     parent_of(X, Z),
-    parent_of(Z, Y).
+    parent_of(Z, Y),
+    male(Y).
 
-female_grandchild_of(X,Y):- female(Y),
+female_grandchild_of(X,Y):-
     parent_of(X, Z),
-    parent_of(Z, Y).
+    parent_of(Z, Y),
+    female(Y).
 
-male_parent_of(X,Y):- male(X),
-    parent_of(X,Y).
+male_parent_of(X,Y):-
+    parent_of(X,Y),
+    male(X).
 
 female_parent_of(X,Y):- female(X),
     parent_of(X,Y).
