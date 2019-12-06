@@ -190,6 +190,9 @@ aunt_of(Person, Aunt):-
     parent_of(Person, Z),
     sister_of(Z, Aunt).
 
+aunts_of(Person, Aunt):-
+    findall(Aunt, aunt_of(Person, Aunt), Aunt).
+
 uncle_of(Person, Uncle):-
     parent_of(Person, Z),
     brother_of(Z, Uncle).

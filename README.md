@@ -6,15 +6,16 @@ Michel Rummens -- michelrummens@gmail.com
 
 ## Test
 Find all cousins of Robin Vonk. \
-Returns: List = [sanna_vonk, kimberly_vonk, patrick_vonk, dennis_vonk, miranda_vonk, cynthia_dekker, jeffrey_dekker, gijs_dekker, melle_dekker].
+Returns: Nieces = [sanna_vonk, kimberly_vonk, miranda_vonk, cynthia_dekker].
+
 ```shell script
-cousins_of(robin_vonk, Cousins).
+nieces_of(robin_vonk, Nieces).
 ```
 
 Find all aunts of Robin Vonk. \
 Returns: List = [marjanne_dekker].
 ```shell script
-findall(Y, aunt_of(robin_vonk, Y), List).
+aunts_of(robin_vonk, Aunts).
 ```
 
 Find first occurrence of an uncle of Robin Vonk. \
