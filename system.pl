@@ -102,74 +102,108 @@ parent_of(ben_dekker, siem_dekker).
 parent_of(ben_dekker, sien_dekker).
 
 /* Rules */
-cousin_of(X,Y):-
-    uncle_aunt_of(Z,X),
-    child_of(Z,Y).
 
-child_of(X,Y):-
-    parent_of(X, Y).
+male_parent_of(Child, Parent):- male(Parent),
+    parent_of(Child, Parent).
 
-male_child_of(X,Y):-
-    parent_of(X, Y),
-    male(Y).
-
-female_child_of(X,Y):-
-    parent_of(X, Y),
-    female(Y).
-
-grandchild_of(X,Y):-
-    parent_of(X, Z),
-    parent_of(Z, Y).
-
-male_grandchild_of(X,Y):-
-    parent_of(X, Z),
-    parent_of(Z, Y),
-    male(Y).
-
-female_grandchild_of(X,Y):-
-    parent_of(X, Z),
-    parent_of(Z, Y),
-    female(Y).
-
-male_parent_of(X,Y):-
-    parent_of(X,Y),
-    male(X).
-
-female_parent_of(X,Y):- female(X),
+female_parent_of(X,Y):- female(Y),
     parent_of(X,Y).
 
-other_parent_of(X,Y):- other(X),
+other_parent_of(X,Y):- other(Y),
     parent_of(X,Y).
 
-grandfather_of(X,Y):- male(X),
-    parent_of(Z,Y),
-    parent_of(X,Z).
+child_of(Parent, Child):-
+    parent_of(Child, Parent).
 
-grandmother_of(X,Y):- female(X),
-    parent_of(X,Z),
-    parent_of(Z,Y).
+male_child_of(Parent, Child):-
+    parent_of(Child, Parent),
+    male(Child).
 
-sibling_of(X, Y):-
-    female_parent_of(M, Y), female_parent_of(M,X),X \= Y.
+female_child_of(Parent, Child):-
+    parent_of(Child, Parent),
+    female(Child).
 
-sister_of(X,Y):- female(X),
-    female_parent_of(M, Y), female_parent_of(M,X),X \= Y.
+other_child_of(Parent, Child):-
+    parent_of(Child, Parent),
+    other(Child).
 
-aunt_of(X,Y):- female(X),
-    parent_of(Z,Y), sister_of(Z,X),!.
+male_children_of(Parent, Child):-
+    findall(Child, male_child_of(Parent, Child), Child).
 
-brother_of(X,Y):- male(X),
-    female_parent_of(M, Y), female_parent_of(M,X),X \= Y.
+female_children_of(Parent, Child):-
+    findall(Child, female_child_of(Parent, Child), Child).
 
-uncle_of(X, Y):-
-    parent_of(Z,Y), brother_of(Z,X).
+grandchild_of(Parent, Child):-
+    parent_of(Z, Parent),
+    parent_of(Child, Z).
 
-uncle_aunt_of(X,Y):-
-    parent_of(Z,Y),
-    sibling_of(Z,X).
+male_grandchild_of(Parent, Child):-
+    parent_of(Z, Parent),
+    parent_of(Child, Z),
+    male(Child).
 
-ancestor_of(X,Y):- parent_of(X,Y).
+female_grandchild_of(Parent, Child):-
+    parent_of(Z, Parent),
+    parent_of(Child, Z),
+    female(Child).
 
-ancestor_of(X,Y):- parent_of(X,Z),
-    ancestor_of(Z,Y).
+grandchildren_of(Parent, Child):-
+    findall(Child, grandchild_of(Parent, Child), Child).
 
+male_grandchildren_of(Parent, Child):-
+    findall(Child, male_grandchild_of(Parent, Child), Child).
+
+grandfather_of(Child, Parent):-
+    parent_of(Child, DADDY),
+    parent_of(DADDY, Parent),
+    male(Parent).
+
+grandmother_of(Child, Parent):-
+    parent_of(Child, MOMMY),
+    parent_of(MOMMY, Parent),
+    female(Parent).
+
+sibling_of(Person, Sibling):-
+    female_parent_of(Sibling, M),
+    female_parent_of(Person, M),
+    Person \= Sibling.
+
+siblings_of(Person, Sibling):-
+    findall(Sibling, sibling_of(Person,Sibling), Sibling).
+
+brother_of(Person, Sibling):-
+    female_parent_of(Sibling, M),
+    female_parent_of(Person, M),
+    Person \= Sibling,
+    male(Sibling).
+
+sister_of(Person, Sibling):-
+    female_parent_of(Sibling, M),
+    female_parent_of(Person, M),
+    Person \= Sibling,
+    female(Sibling).
+
+brothers_of(Person, Brother):-
+    findall(Brother, brother_of(Person, Brother), Brother).
+
+aunt_of(Person, Aunt):-
+    parent_of(Person, Z),
+    sister_of(Z, Aunt).
+
+uncle_of(Person, Uncle):-
+    parent_of(Person, Z),
+    brother_of(Z, Uncle).
+
+uncle_and_aunt_of(Person, UncleAndAunt):-
+    parent_of(Person, Z),
+    sibling_of(Z, UncleAndAunt).
+
+uncles_and_aunts_of(Person, UnclesAndAunts):-
+    findall(UnclesAndAunts, uncle_and_aunt_of(Person, UnclesAndAunts), UnclesAndAunts).
+
+cousin_of(Person, Cousin):-
+    uncle_and_aunt_of(Person, Z),
+    female_child_of(Z, Cousin).
+
+cousins_of(Person, Cousin):-
+    findall(Cousin, cousin_of(Person, Cousin), Cousin).
