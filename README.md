@@ -8,7 +8,7 @@ Michel Rummens -- michelrummens@gmail.com
 Find all cousins of Robin Vonk. \
 Returns: List = [sanna_vonk, kimberly_vonk, patrick_vonk, dennis_vonk, miranda_vonk, cynthia_dekker, jeffrey_dekker, gijs_dekker, melle_dekker].
 ```shell script
-findall(Y, cousin_of(robin_vonk, Y), List).
+cousins_of(robin_vonk, Cousins).
 ```
 
 Find all aunts of Robin Vonk. \

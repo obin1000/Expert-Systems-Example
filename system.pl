@@ -201,9 +201,9 @@ uncle_and_aunt_of(Person, UncleAndAunt):-
 uncles_and_aunts_of(Person, UnclesAndAunts):-
     findall(UnclesAndAunts, uncle_and_aunt_of(Person, UnclesAndAunts), UnclesAndAunts).
 
-cousin_of(Person, Cousin):-
+niece_of(Person, Niece):-
     uncle_and_aunt_of(Person, Z),
-    female_child_of(Z, Cousin).
+    female_child_of(Z, Niece).
 
-cousins_of(Person, Cousin):-
-    findall(Cousin, cousin_of(Person, Cousin), Cousin).
+nieces_of(Person, Niece):-
+    findall(Niece, niece_of(Person, Niece), Niece).
