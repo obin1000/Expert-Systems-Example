@@ -2,7 +2,7 @@
 
 ## Test
 Find all cousins of Robin Vonk. \
-Returns: List = [sanna_vonk, kimberly_vonk, patrick_vonk, dennis_vonk, miranda_vonk, cynthia_dekker, jeffrey_dekker, gijs_dekker, melle_dekker].
+Returns: List = [sanna_vonk, kimberly_vonk, stefanie_vonk, patrick_vonk, dennis_vonk, miranda_vonk, cynthia_dekker, jeffrey_dekker, gijs_dekker, melle_dekker].
 ```shell script
 findall(Y, cousin_of(robin_vonk, Y), List).
 ```
@@ -32,7 +32,7 @@ sister_of(robin_vonk, lara_vonk).
 ```
 
 Find all grandchildren of Henk Vonk. \
-Returns: List = [robin_vonk, lara_vonk, sanna_vonk, kimberly_vonk, patrick_vonk, dennis_vonk, miranda_vonk].
+Returns: List = [robin_vonk, lara_vonk, sanna_vonk, kimberly_vonk, stefanie_vonk, patrick_vonk, dennis_vonk, miranda_vonk].
 ```shell script
 findall(Y, grandchild_of(henk_vonk, Y), List).
 ```
