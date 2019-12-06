@@ -4,8 +4,11 @@ Michel Rummens -- michelrummens@gmail.com
 
 # Expert Systems Example
 
-## Test
-Find all cousins of Robin Vonk. \
+## Example of how to query some rules.
+More rules exist in our project, which are all called in the same manner.\
+To execute more queries, please see our sourcecode.
+
+Find all cousins of Robin Vonk.\
 Returns: Nieces = [sanna_vonk, kimberly_vonk, miranda_vonk, cynthia_dekker].
 
 ```shell script
@@ -21,7 +24,7 @@ aunts_of(robin_vonk, Aunts).
 Find first occurrence of an uncle of Robin Vonk. \
 Returns: X = alfred_vonk 
 ```shell script
-uncle_of(X, robin_vonk).
+uncle_of(robin_vonk, Uncle).
 ```
 
 Check if Lara Vonk is a brother of Robin Vonk. \
@@ -37,9 +40,10 @@ sister_of(robin_vonk, lara_vonk).
 ```
 
 Find all grandchildren of Henk Vonk. \
-Returns: List = [robin_vonk, lara_vonk, sanna_vonk, kimberly_vonk, patrick_vonk, dennis_vonk, miranda_vonk].
+Returns: Grandchildren = [robin_vonk, lara_vonk, sanna_vonk, kimberly_vonk, patrick_vonk, dennis_vonk, miranda_vonk].
+
 ```shell script
-findall(Y, grandchild_of(henk_vonk, Y), List).
+grandchildren_of(henk_vonk, Grandchildren).
 ```
 ## Family tree
 ![](img/FamilyTree.jpeg)
