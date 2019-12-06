@@ -1,5 +1,5 @@
 ## Authors
-Robin Vonk -- robinvonk789@gmail.com
+Robin Vonk -- robinvonk789@gmail.com\
 Michel Rummens -- michelrummens@gmail.com
 
 # Expert Systems Example
